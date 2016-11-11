@@ -1,207 +1,47 @@
 <div lang="fa" dir="rtl">
-    <h1>پرداخت درون برنامه ای بازار</h1>
-    <p>
-        <strong>
-            پرداخت درون برنامه‌ای یکی از سرویس‌های بازار است که فروش محتوای دیجیتال از درون برنامه‌ها را ممکن می‌کند. شما می‌توانید از این سرویس برای فروش محتوای مختلف مانند محتوای قابل دانلود مثل موسیقی، تصاویر و محتوای غیر قابل دانلود مثل افزایش مرحله یا خرید سکه در بازی‌ها استفاده کنید.
-    </p></strong>
-    <p>
-        <strong>
-            وقتی از پرداخت درون برنامه‌ای بازار برای فروش محتوا استفاده می‌کنید، کلیهٔ مراحل پرداخت توسط بازار انجام می‌شود. بنابراین نیازی نیست برنامهٔ شما به صورت مستقیم پردازش مالی پرداخت‌ها را انجام دهد.
-    </p></strong>
-    <h2>معرفی</h2>
-    <p>
-        <strong>
-            در این پروژه آموزشی استفاده از پرداخت درون برنامه ای بازار به شکل بسیار ساده پیاده سازی شده تا شما هم بتوانید این سیستم را در برنامه خودتان پیاده سازی کنید.<br>
-            این پروژه فقط نحوه ارتقای کاربران(premium) را در خود جای داده اما احتمالا استفاده از این سیستم در کالاهای مصرفی هم در آینده آموزش داده خواهد شد.
-    </p></strong>
-</div>
-<p align="center">
-    <strong>
-        <img src="http://axgig.com/images/19171236564181435574.png" border="0" alt="image1" width="160" height="267" />
-        -->
-        <img src="http://axgig.com/images/59827746574750759720.png" border="0" alt="image2" width="160" height="267" />
-        -->
-        <img src="http://axgig.com/images/72349850009242691162.png" border="0" alt="image3" width="160" height="267" />
-        -->
-        <img src="http://axgig.com/images/25090378793605189358.png" border="0" alt="image4" width="160" height="267" />
-</p></strong>
-<div lang="fa" dir="rtl">
-    <h2>آموزش</h2>
-    <p>
-        <strong>
-            ما برای ساخت این برنامه از پروژه TriviaDrive و <a href="http://pardakht.cafebazaar.ir/doc/quickstart/?l=fa">راهنمای یک شروع سریع</a> در بازار استفاده کردیم و به شما هم 100% تاکید میکنم که این صفحه را دقیقا مطالعه نمایید.
-            <br>
-            من فقط در اینجا توضیحاتی از عملکرد برنامه به شما میدم و جزئیات برنامه را میتوانید در وبسایت مارکت بازار مطالعه نمایید
-            <br><br>
-            اول باید فایل هایی که از طرف بازار معرفی شده را وارد پروژه خود کنید و مجوز زیر را در مانیفست برنامه خود قرار دهید
-            <br>
-        </strong>
-</div>
-```java
-<uses-permission android:name="com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR"></uses-permission>
-```
-<div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            بعد از برنامه خود خروجی بگیرید و در پنل کاربری خود در بازار آپلود کنید تا قسمت پرداخت درون برنامه ای باز شود.
-            <>
-            وارد شوید و محصولات خود را ثبت کنید..<br> <a href="http://pardakht.cafebazaar.ir/doc/billing-admin/?l=fa">آموزش ثبت محصول</a>
-            <br><br>
-            در پروژه اکتیویتی <code>OnlinePremium.java</code> کاربر بعد از ارتقاء حساب خود برای دفعه های بعد که وارد برنامه میشود باید به اینترنت متصل باشد تا اکانت کاربری او توسط سیستم بازار شناسایی شود و بازار تایید کنید که آیا او ویژه هست یا خیر (تمام این کارها در چند ثانیه انجام میشود)
-            <br>در بالای متد <code>onCreate</code> شما باید شناسه کالا خود را در این قسمت قرار دهید <code>static final String SKU_PREMIUM = "";</code><br>
-            همچنین باید در داخل متد  <code>onCreate</code> کلید عمومی برنامه را در این قسمت قرار دهید <code>String base64EncodedPublicKey = ""</code><br>
-            در آغاز ورود به اکتیویتی <code>OnlinePremium.java</code> دیالوگی ظاهر میشه که بعد از شناسایی کاربر از premium بودن یا نه ناپدید میشه و نتیجه را در قالب یک <code>Toast</code> نمایش میدهد.<br>
-    </p></strong>
-</div>
-```java
-	 dialog = new ProgressDialog(this);
-     dialog.setMessage("loading...");
-     dialog.setCancelable(false);
-     dialog.setInverseBackgroundForced(false);
-     dialog.show();
-```
-<br><div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            با آغاز اکتیویتی کد زیر اجرا میشود که برای جستجو premium بودن میباشد.<br>
-            اگر کاربر premium باشد دیالوگ loading مخفی میشه <code>dialog.hide()</code> متد <code>UpdateUi()</code> اجرا میشه و محتوای این متد را در باتن قرار میده.<br>
-            اگر کاربر premium نباشه هم منتظر لمس کردن کاربر بر روی دکمه میشه که متد <code>onOnlineUpgradeAppButtonClicked</code> را فراخوانی کند.
-    </p></strong>
-</div>
-```java
-IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-   public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-   Log.d(TAG, "Query inventory finished.");
-        if (result.isFailure()) {
-            Log.d(TAG, "Failed to query inventory: " + result);
-            dialog.hide();
-            return;
-        }
-        else {
-            Log.d(TAG, "Query inventory was successful.");
-            // does the user have the premium upgrade?
-            mIsPremium = inventory.hasPurchase(SKU_PREMIUM);
+    <h1>
+        سیستم اعلام نمره
+    </h1>
 
-            // update UI accordingly
 
-            Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-        }
-   dialog.hide();
-   updateUi();
-   setWaitScreen(false);
-   Toast.makeText(getApplicationContext(), mIsPremium? R.string.premium : R.string.notpremium, Toast.LENGTH_SHORT).show();
-   Log.d(TAG, "Initial inventory query finished; enabling main UI.");
+    <p style="direction: rtl;">
+    <font size="3"><b>موضوع :</b>&nbsp;سیستم اعلام نمره&nbsp;<br><b>درس :&nbsp;</b>پروژه کارشناسی<br><b>دانشگاه :&nbsp;</b>دانشگاه صنعتی سجاد&nbsp;<br><b>استاد راهنما :&nbsp;</b>مهندس امیر باوفای</font></p><p style="direction: rtl;"><font size="3"><b>استاتید دفاع : </b>مهندس احمد شکرانی &nbsp;_ مهندس جواد یزدانجو<br><b>سال تحصیلی :&nbsp;</b>ترم تابستان 94-1395<br><b>نرم افزاز برنامه نویسی شده :&nbsp;</b>Visual Studio و Android Studio<br></font></p><div style="direction: rtl;"><font size="3"><span style="line-height: 20.9px;"><b>مستندات :&nbsp;</b></span><font color="#008000">دارد</font></font></div><div style="direction: rtl;"><font size="3"><input type="button" id="read_more" style="display:none;" alt="ادامه مطلب"></font></div><div style="direction: rtl;"><font size="3"><br></font></div><div style="direction: rtl;"><span style="text-align: justify;"><font size="3"><b>توضیحات :&nbsp;</b></font></span></div><p></p><p><b>سیستم اعلام نمره چیست؟</b></p><div style="direction: rtl;">
+        <p>ایده این سیستم از این جا امده است که اساتید بتوانند ریز نمرات خود را به دانشجویان یا&nbsp;دانش آموزان ارائه دهند.</p><p>اساتید میتوانند دروس خود را تعریف کنند و برای هر درس ارزیابیهایی نظیر نمره پایانی، نمره امتحانات، نمره حضور در کلاس و غیر مشخص نمایند.</p><p>دانشجویان یا&nbsp;دانش آموزان دروس ارائه شده توسط اساتید را انتخاب کرده و پس از طی کردن مراحل تایید، اساتید میتوانند برای دانشجویان یا دانش آموزان در ارزیابی‌هایی که تعریف کرده‌اند نمره وارد کنند.</p><p><b><br></b></p><p><b>امکانات سیستم:</b></p><p></p><ul><li>این سیستم از یک سرور و یک برنامه اندرویدی بهره میبرد.&nbsp;که اساتید و مدیریت از طریق سرور و دانشجویان یا دانش آموزان از طریق برنامه اندروید با سیستم در ارتباط هستند.</li><li>پنل مدیریت : که مدیر میتواند دانشگاه و یا مدرسه باشد و قادر است کلیه اعمال سیستم را مدیریت کند.</li><li>طراحی متریال در سایت و اندروید</li></ul><p></p><p><br></p><p><b>قابلیت‌های سیستم:</b></p><p><b>بخش مدیریت:</b></p><p></p><ul><li>تعریف ترم یا دوره: که تمامی دروس ثبت شده اساتید در یک ترم یا دوره سازماندی می‌شوند.</li><li>تعریف دروس پایه&nbsp;</li><li>مدیریت کامل رو کاربران سایت</li></ul><div><br></div><p></p><p><b>بخش اساتید:</b></p><div>
+            <p></p><ul><li>ارائه دروس : که از لیست دروس تعریف شده توسط مدیر سیستم درسی را انتخاب می‌نمایند</li><li>تعریف ارزیابی برای هر درس: که میتواند برای هر ارزیابی حداکثر نمره در نظر گرفت.</li><li>مدیریت دانشجویان یا دانش آموزان هر درس</li><li>ثبت نمره: نمره برای دانشجو در هر ارزیابی ثبت میگردد</li><li><b>نمره محاسباتی :&nbsp;</b>&nbsp;امکان ویژه‌ای که سیستم در اختیار اساتید قرار می‌دهد این می‌باشد که پس از ثبت نمره خام توسط اساتید سیستم نمره نهایی دانشجویان را نسبت به میانگین نمرات و نمره دانشجو محاسبه میکند.</li><li>گزارش از نمرات ثبت شده</li><li>مشاهده دروس ارائه شده در ترم‌های گذشته</li></ul><div><br></div><p></p><p><b>بخش دانشجو یا دانش آموز:</b></p><p>برنامه <b>اندروید&nbsp;</b>شامل این بخش می‌باشد</p><div>
+                <p></p><ul><li>مشاهده تمامی ترم‌ یا&nbsp;دورهها</li><li>مشاهده لیست دروس ارائه شده در هر ترم</li><li>مشاهده لیست دروس انتخاب شده توسط دانشجو یا دانش آموز</li><li>مشاهده لیست ارزیابی‌ها و نمره خام خود</li><li>مشاهده نمره نهایی برای هر درس</li><li>ثبت نام و ورود : تماس و پیامک کردن کد فعال سازی برای دانشحو</li></ul><div><br></div><p></p><p>شما برای این که بتوانید این سیستم را بصورت اختصاصی برای دانشگاه یا مدرسه خود داشته باشید باید از یک سرور ویندوزی استفاده کنید</p><div>
+                    <p>و یا می‌توانید برای استفاده اشتراکی از سروری که ما در اختیار شما قرار می‌دهیم بهره ببرید.</p><p><br></p><p><br></p><p><b>تصاویری از برنامه :</b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b>بخش دانشجویان :</b></p><p><b><br></b></p><p><b><br></b></p><p>
+                        <img src="http://www.mediafire.com/convkey/c0ea/jahj319xbhlsjw5zg.jpg" style="
+    width: 50% !important;
+"><img src="http://www.mediafire.com/convkey/a771/v2t7sjw7tefs1kfzg.jpg" style="
+    width: 50% !important;
+">
+                    </p><p><br></p><p>
+                        <img src="http://www.mediafire.com/convkey/825e/oz72o62peuk3gcpzg.jpg" style="
+    width: 50% !important;
+"><img src="http://www.mediafire.com/convkey/48e5/zyepo5kvt6ehgtezg.jpg" style="
+    width: 50% !important;
+">
+                    </p><p><b><br></b></p><p>
+                        <img src="http://www.mediafire.com/convkey/4a9f/15eqi05mtc6mewxzg.jpg" style="
+    width: 49% !important;
+"> <img src="http://www.mediafire.com/convkey/80d6/ph05u29y9714prbzg.jpg" style="
+    width: 49% !important;
+">
+                    </p><p><b><br></b></p><p>
+                        <img src="http://www.mediafire.com/convkey/8541/g9kcsjsxsf19wakzg.jpg" style="
+    width: 49% !important;
+"><img src="http://www.mediafire.com/convkey/70d3/x994wkjawoayoa9zg.jpg" style="
+    width: 49% !important;
+">
+                    </p><p><b><br></b></p><p>
+                        <img src="http://www.mediafire.com/convkey/832a/dho7dra2bbavza5zg.jpg" style="
+    width: 50% !important;
+">
+                    </p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b>بخش ورود در سرور :</b></p><p><b><br></b></p><p><b><br></b></p><p><img src="http://www.mediafire.com/convkey/9980/d9q7pxjiniolltxzg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/1853/udfb1txfnds0ombzg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/0070/ni1cenxycq54mymzg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/5d4a/zv4zjmk8iy8va77zg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/194c/kuqsbz1krq1mqkbzg.jpg"></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b><br></b></p><p><b>بخش مدیریت :</b></p><p><b><br></b></p><p><img src="http://www.mediafire.com/convkey/b6d2/y2dnnvuckyflgpqzg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/908f/t881v7r99weu48bzg.jpg"></p><p><br></p><p><img src="http://www.mediafire.com/convkey/30bf/omvx4q7c3mso9cbzg.jpg"></p><hr id="http://blog.ir/panel/abn-najaf/post_edit/19#"><br>
+                </div>
+            </div>
+        </div><div><img src="http://www.mediafire.com/convkey/33a2/5w55bxoa4cwsdewzg.jpg"></div><div><br></div><div><br></div><div><img src="http://www.mediafire.com/convkey/4f8c/phjhvlp87r9hawrzg.jpg"></div><div><img src="http://www.mediafire.com/convkey/7c7e/21f24thclkh0hskzg.jpg"></div><div><br></div><div><img src="http://www.mediafire.com/convkey/58e6/t3p7co0snn6hkvwzg.jpg"></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><b>بخش اساتید :&nbsp;</b></div><div><b><br></b></div><div><img src="http://www.mediafire.com/convkey/752c/y5ob5dlb9yndhslzg.jpg"></div><div><br></div><div><img src="http://www.mediafire.com/convkey/ad34/s83lu8r6zg9q6iyzg.jpg"></div><div><br></div><div><img src="http://www.mediafire.com/convkey/3c7b/beo3hctvokxhn5kzg.jpg"></div><div><br></div><div><img src="http://www.mediafire.com/convkey/75a8/s1nyf4a3y3o8vvazg.jpg"></div><div><br></div><div><img src="http://www.mediafire.com/convkey/7442/fwbn1j1tg5kiuiszg.jpg"></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div>
+    </div>
 
-   }
 
- };
-```
-<br><div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            با لمس کردن باتن متد <code>onOnlineUpgradeAppButtonClicked</code> که ما در فایل <code>onlinepremium.xml</code> برای خاصیت <code>android:onClick</code> قرار دادیم تا با لمس دکمه متد ذکر شده اجرا بشه
-    </p></strong>
-</div>
-```java
-
-    public void onOnlineUpgradeAppButtonClicked(View arg0) {
-        Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
-        setWaitScreen(true);
-
-        String payload = "inbarnametavasotehamedjjsakhteshodeast";
-
-        mHelper.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
-                mPurchaseFinishedListener, payload);
-    }
-```
-
-```java
-<Button android:id="@+id/onlinebtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp"
-        android:onClick="onOnlineUpgradeAppButtonClicked"
-        android:text="online premium" />
-```
-<br><div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            بعد از پرداخت همه چیز به متد <code>updateUi</code> برمیگرده<br>
-            پس شما هر دستوری در این متد قرار بدهید بعد از پرداخت و ویژه شدن کاربر تمامی دستورات این متد اجرا میشود.<br>
-            ما در این پروژه رنگ باتن را عوض میکنم و یک <code>Toast</code> با کلیک بر روی باتن نمایش میدم
-    </p></strong>
-</div>
-```java
-public void updateUi() {
-
-    if (mIsPremium) {
-         findViewById(R.id.onlinebtn).setBackgroundResource(R.drawable.green);
-         btn1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), R.string.clickpremium, Toast.LENGTH_SHORT).show();
-            }
-         });
-    }
- }
-```
-<br><div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            در اکتیویتی <code>Premium.java</code> تمامی کدها و دستورات با اکتیویتی <code>OnlinePremium.java</code> یکی است فقط ما در در این اکتیویتی خاصیت <code>SharedPreferences</code> قرار دادیم تا بعد از اولین بار پرداخت و ارتقاء یافتن کاربر این دیتا در برنامه ذخیره شود تا بعد از هر بار ورود به برنامه نیازی به اینترنت و چک کردن کاربر توسط بازار نباشد.<br>
-            <b>توجه :</b> این روش امنی نیست و ما روش اول را برای شما پیشنهاد میکنیم<br><br>
-            برای این کار متد <code>mIsPremium</code> را در اول برابر <code>false</code> قرار دادیم وگفتیم که اگر <code>mIsPremium == true</code> متد <code>updateUi()</code> را اجرا کند.
-    </p></strong>
-</div>
-```java
-preferences = getSharedPreferences(PACKAGENAME,Context.MODE_PRIVATE);
-PACKAGENAME = getClass().getName();
-Log.e("TAG", PACKAGENAME);
-mIsPremium = preferences.getBoolean(KEY, false);
-      if (mIsPremium == true) {
-          updateUi();
-          return;
-      }
-```
-<br><div lang="fa" dir="rtl">
-    <p>
-        <strong>
-            برای بار اول که کاربر ویژه نیست بعد از ارتقاء حساب متد <code>updateUi()</code> انجام میشه که ما برای تغییر محتوای <code>SharedPreferences</code> کد <code>SharedPreferences.Editor</code> را در این متد قرار دادیم تا با تغییر باتن محتوای <code>SharedPreferences</code> هم <code>true</code> شود و برای دفعه های بعد تنظیمات ویژه بودن کاربر در برنامه ذخیره بماند.
-    </p></strong>
-</div>
-```java
-public void updateUi() {
-
-    if (mIsPremium) {
-         findViewById(R.id.onlinebtn).setBackgroundResource(R.drawable.green);
-         btn1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), R.string.clickpremium, Toast.LENGTH_SHORT).show();
-            }
-         });
-         // change the mIsPremium to true
-         SharedPreferences.Editor newtask = preferences.edit();
-         newtask.putBoolean(KEY, true);
-         newtask.commit();
-    }
- }
-```
-
-<br><div lang="fa" dir="rtl">
-    <h2>در پایان</h2>
-    <p>
-        <strong>
-            شما میتوانید این پروژه را fork کنید و در کامل کردن این پروژه ما را یاری کنید
-            <br>
-            همچنین با ستاره (در بالای صفحه) دلگرمی ما برای پروژه های آموزشی بعدی باشید.<br>
-            امیدوارم با این آموزش قطره ای به دانش اندرویدی شما افزوده باشم
-    </p></strong>
-    <h2>نویسنده</h2>
-    <p>
-        <strong>
-            <img src="http://www.axgig.com/images/92193400440163114768.png" border="0" alt="hamedjj" align="middle" width="50" height="50" /> <a href="http://barnamenevis.org/member.php?290105-hamedjj">hamedjj</a>
-    </p></strong>
 </div>
